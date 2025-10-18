@@ -1,13 +1,16 @@
 {
   "pageHeader": {
-    "title": "GUID v7 生成器",
+    "title": "GUID 產生工具",
     "description": "一個現代化工具，用於生成時間排序的 122 位元通用唯一識別碼。"
   },
   "generatorCard": {
-    "title": "生成 GUID",
+    "title": "產生 GUID",
     "quantity": "數量",
-    "generate": "生成",
-    "copiedToClipboard": "已複製到剪貼簿",
+    "version": "UUID 版本",
+    "versionV4": "v4（隨機）",
+    "versionV7": "v7（時間排序）",
+    "generate": "產生",
+    "successfullyGenerated": "產生成功",
     "clipboard": "剪貼簿",
     "autoCopy": "自動複製到剪貼簿"
   },
@@ -20,15 +23,15 @@
     "commas": "逗號"
   },
   "guidResults": {
-    "title": "已生成 {{count}} 個 GUID",
-    "title_other": "已生成 {{count}} 個 GUID",
+    "title": "已產生 {{count}} 個 GUID",
+    "title_other": "已產生 {{count}} 個 GUID",
     "copyAll": "全部複製",
     "copied": "已複製！",
     "copyGuid": "複製 GUID"
   },
   "advancedOptions": {
     "title": "進階選項",
-    "subtitle": "根據參考 GUID 生成 GUID，並可選時間偏移。",
+    "subtitle": "根據參考 GUID 產生 GUID，並可選時間偏移。",
     "referenceGuidLabel": "參考 GUID v7",
     "referenceGuidPlaceholder": "例如：018f3b89-5cba-77d4-8623-275d83730e6c",
     "referenceGuidDescription": "根據此參考 GUID 的時間戳生成 GUID",

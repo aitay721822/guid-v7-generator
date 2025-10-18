@@ -1,11 +1,20 @@
 import { uuidv7 } from "uuidv7";
 
+export type UuidVersion = "v4" | "v7";
+
 export interface FormatOptions {
   hyphens: boolean;
   braces: boolean;
   uppercase: boolean;
   quotes: boolean;
   commas: boolean;
+}
+
+/**
+ * Generate a single GUID v4 using browser's crypto API
+ */
+export function generateGuidV4(): string {
+  return crypto.randomUUID();
 }
 
 /**
@@ -16,11 +25,23 @@ export function generateGuidV7(): string {
 }
 
 /**
- * Generate multiple GUID v7s
- * @param count Number of GUIDs to generate
+ * Generate a single GUID of the specified version
+ * @param version The UUID version to generate (v4 or v7)
  */
-export function generateMultipleGuids(count: number): string[] {
-  return Array.from({ length: count }, () => generateGuidV7());
+export function generateGuid(version: UuidVersion = "v7"): string {
+  return version === "v4" ? generateGuidV4() : generateGuidV7();
+}
+
+/**
+ * Generate multiple GUIDs
+ * @param count Number of GUIDs to generate
+ * @param version The UUID version to generate (v4 or v7)
+ */
+export function generateMultipleGuids(
+  count: number,
+  version: UuidVersion = "v7",
+): string[] {
+  return Array.from({ length: count }, () => generateGuid(version));
 }
 
 /**

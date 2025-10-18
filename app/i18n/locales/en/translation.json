@@ -1,13 +1,16 @@
 {
   "pageHeader": {
-    "title": "GUID v7 Generator",
+    "title": "GUID Generator",
     "description": "A modern tool for generating time-ordered, 122-bit universally unique identifiers."
   },
   "generatorCard": {
     "title": "Generate GUIDs",
     "quantity": "Quantity",
+    "version": "UUID Version",
+    "versionV4": "v4 (Random)",
+    "versionV7": "v7 (Time-ordered)",
     "generate": "Generate",
-    "copiedToClipboard": "Copied to clipboard",
+    "successfullyGenerated": "Generated successfully",
     "clipboard": "Clipboard",
     "autoCopy": "Auto copy to clipboard"
   },

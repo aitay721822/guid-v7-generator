@@ -1,14 +1,27 @@
 "use client";
 
-import { Button, Card, CardBody, Checkbox, Input } from "@heroui/react";
+import {
+  Button,
+  Card,
+  CardBody,
+  Checkbox,
+  Input,
+  Radio,
+  RadioGroup,
+} from "@heroui/react";
 import { Check } from "lucide-react";
 import { useT } from "@/app/i18n/client";
-import type { FormatOptions as FormatOptionsType } from "@/lib/guid";
+import type {
+  FormatOptions as FormatOptionsType,
+  UuidVersion,
+} from "@/lib/guid";
 import { FormatOptions } from "./FormatOptions";
 
 interface GeneratorCardProps {
   quantity: string;
   onQuantityChange: (value: string) => void;
+  version: UuidVersion;
+  onVersionChange: (version: UuidVersion) => void;
   formatOptions: FormatOptionsType;
   onFormatOptionsChange: (options: FormatOptionsType) => void;
   autoCopy: boolean;
@@ -20,6 +33,8 @@ interface GeneratorCardProps {
 export function GeneratorCard({
   quantity,
   onQuantityChange,
+  version,
+  onVersionChange,
   formatOptions,
   onFormatOptionsChange,
   autoCopy,
@@ -35,6 +50,19 @@ export function GeneratorCard({
         <h2 className="text-xl font-semibold">{t("generatorCard.title")}</h2>
 
         <div className="flex flex-col gap-4">
+          <RadioGroup
+            label={t("generatorCard.version")}
+            value={version}
+            onValueChange={(value) => onVersionChange(value as UuidVersion)}
+            orientation="horizontal"
+            classNames={{
+              wrapper: "gap-4",
+            }}
+          >
+            <Radio value="v4">{t("generatorCard.versionV4")}</Radio>
+            <Radio value="v7">{t("generatorCard.versionV7")}</Radio>
+          </RadioGroup>
+
           <Input
             label={t("generatorCard.quantity")}
             type="number"
@@ -56,7 +84,7 @@ export function GeneratorCard({
             {showCopiedMessage ? (
               <>
                 <Check className="w-4 h-4" />
-                <span>{t("generatorCard.copiedToClipboard")}</span>
+                <span>{t("generatorCard.successfullyGenerated")}</span>
               </>
             ) : (
               <span>{t("generatorCard.generate")}</span>

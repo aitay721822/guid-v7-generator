@@ -1,7 +1,7 @@
 {
-  "name": "GUID v7 生成器",
-  "short_name": "GUID v7",
-  "description": "一個簡單的 GUID v7 生成器應用",
+  "name": "GUID 產生工具",
+  "short_name": "GUID",
+  "description": "一個簡單的 GUID 產生工具應用",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",

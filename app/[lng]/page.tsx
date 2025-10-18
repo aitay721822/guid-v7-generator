@@ -15,6 +15,7 @@ import {
   generateMultipleGuids,
   generateSimilarGuids,
   isValidGuid,
+  type UuidVersion,
 } from "@/lib/guid";
 import { useT } from "../i18n/client";
 import { AdvancedOptions } from "./components/AdvancedOptions";
@@ -26,6 +27,7 @@ import { PageHeader } from "./components/PageHeader";
 export default function Home() {
   const { t } = useT();
   const [quantity, setQuantity] = useState<string>("1");
+  const [version, setVersion] = useState<UuidVersion>("v7");
   const [generatedGuids, setGeneratedGuids] = useState<string[]>([]);
   const [formatOptions, setFormatOptions] = useState<FormatOptions>({
     hyphens: true,
@@ -85,7 +87,7 @@ export default function Home() {
       }
       guids = generateSimilarGuids(referenceGuid, count, offsetMs);
     } else {
-      guids = generateMultipleGuids(count);
+      guids = generateMultipleGuids(count, version);
     }
 
     const formatted = formatMultipleGuids(guids, formatOptions);
@@ -123,6 +125,8 @@ export default function Home() {
           <GeneratorCard
             quantity={quantity}
             onQuantityChange={setQuantity}
+            version={version}
+            onVersionChange={setVersion}
             formatOptions={formatOptions}
             onFormatOptionsChange={setFormatOptions}
             autoCopy={autoCopy}
@@ -131,12 +135,14 @@ export default function Home() {
             onGenerate={handleGenerate}
           />
 
-          <AdvancedOptions
-            referenceGuid={referenceGuid}
-            onReferenceGuidChange={setReferenceGuid}
-            timeOffset={timeOffset}
-            onTimeOffsetChange={setTimeOffset}
-          />
+          {version === "v7" && (
+            <AdvancedOptions
+              referenceGuid={referenceGuid}
+              onReferenceGuidChange={setReferenceGuid}
+              timeOffset={timeOffset}
+              onTimeOffsetChange={setTimeOffset}
+            />
+          )}
 
           <GuidResults guids={generatedGuids} onCopyAll={handleCopyAll} />
         </main>

@@ -46,12 +46,12 @@ export async function generateMetadata() {
   const { t } = await getT();
   return {
     title: t("pageHeader.title"),
-    description: "一個簡單的 GUID v7 生成器應用，支援離線使用",
+    description: "一個簡單的 GUID 生成器應用，支援離線使用",
     manifest: "/manifest.json",
     appleWebApp: {
       capable: true,
       statusBarStyle: "default",
-      title: "GUID v7",
+      title: "GUID 產生工具",
     },
   };
 }
