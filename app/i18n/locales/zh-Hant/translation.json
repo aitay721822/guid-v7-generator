@@ -1,0 +1,51 @@
+{
+  "pageHeader": {
+    "title": "GUID v7 生成器",
+    "description": "一個現代化工具，用於生成時間排序的 122 位元通用唯一識別碼。"
+  },
+  "generatorCard": {
+    "title": "生成 GUID",
+    "quantity": "數量",
+    "generate": "生成",
+    "copiedToClipboard": "已複製到剪貼簿",
+    "clipboard": "剪貼簿",
+    "autoCopy": "自動複製到剪貼簿"
+  },
+  "formatOptions": {
+    "title": "格式選項",
+    "hyphens": "連字號",
+    "braces": "大括號",
+    "uppercase": "大寫",
+    "quotes": "引號",
+    "commas": "逗號"
+  },
+  "guidResults": {
+    "title": "已生成 {{count}} 個 GUID",
+    "title_other": "已生成 {{count}} 個 GUID",
+    "copyAll": "全部複製",
+    "copied": "已複製！",
+    "copyGuid": "複製 GUID"
+  },
+  "advancedOptions": {
+    "title": "進階選項",
+    "subtitle": "根據參考 GUID 生成 GUID，並可選時間偏移。",
+    "referenceGuidLabel": "參考 GUID v7",
+    "referenceGuidPlaceholder": "例如：018f3b89-5cba-77d4-8623-275d83730e6c",
+    "referenceGuidDescription": "根據此參考 GUID 的時間戳生成 GUID",
+    "timeOffsetLabel": "時間偏移（毫秒）",
+    "timeOffsetPlaceholder": "例如：1000 代表 +1 秒，-1000 代表 -1 秒",
+    "timeOffsetDescription": "調整參考 GUID 的時間戳（需要上方的參考 GUID）"
+  },
+  "pageFooter": {
+    "rfcLink": "閱讀 RFC 規範"
+  },
+  "errors": {
+    "title": "錯誤",
+    "invalidQuantity": "請輸入 1 到 1000 之間的有效數量",
+    "timeOffsetNeedsReference": "時間偏移只能與參考 GUID 一起使用",
+    "invalidTimeOffset": "請輸入有效的時間偏移（毫秒）",
+    "invalidReferenceGuid": "無效的參考 GUID 格式",
+    "copyFailed": "複製到剪貼簿失敗，請重試。",
+    "ok": "確定"
+  }
+}

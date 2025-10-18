@@ -1,0 +1,51 @@
+{
+  "pageHeader": {
+    "title": "GUID v7 Generator",
+    "description": "A modern tool for generating time-ordered, 122-bit universally unique identifiers."
+  },
+  "generatorCard": {
+    "title": "Generate GUIDs",
+    "quantity": "Quantity",
+    "generate": "Generate",
+    "copiedToClipboard": "Copied to clipboard",
+    "clipboard": "Clipboard",
+    "autoCopy": "Auto copy to clipboard"
+  },
+  "formatOptions": {
+    "title": "Formatting Options",
+    "hyphens": "Hyphens",
+    "braces": "Braces",
+    "uppercase": "Uppercase",
+    "quotes": "Quotes",
+    "commas": "Commas"
+  },
+  "guidResults": {
+    "title": "Generated {{count}} GUID",
+    "title_other": "Generated {{count}} GUIDs",
+    "copyAll": "Copy All",
+    "copied": "Copied!",
+    "copyGuid": "Copy GUID"
+  },
+  "advancedOptions": {
+    "title": "Advanced Options",
+    "subtitle": "Generate GUIDs based on a reference GUID with optional time offset.",
+    "referenceGuidLabel": "Reference GUID v7",
+    "referenceGuidPlaceholder": "e.g. 018f3b89-5cba-77d4-8623-275d83730e6c",
+    "referenceGuidDescription": "Generate GUIDs based on this reference GUID's timestamp",
+    "timeOffsetLabel": "Time Offset (milliseconds)",
+    "timeOffsetPlaceholder": "e.g. 1000 for +1 second, -1000 for -1 second",
+    "timeOffsetDescription": "Adjust the reference GUID's timestamp (requires reference GUID above)"
+  },
+  "pageFooter": {
+    "rfcLink": "Read the RFC specification"
+  },
+  "errors": {
+    "title": "Error",
+    "invalidQuantity": "Please enter a valid quantity between 1 and 1000",
+    "timeOffsetNeedsReference": "Time offset can only be used with a reference GUID",
+    "invalidTimeOffset": "Please enter a valid time offset in milliseconds",
+    "invalidReferenceGuid": "Invalid reference GUID format",
+    "copyFailed": "Failed to copy to clipboard. Please try again.",
+    "ok": "OK"
+  }
+}

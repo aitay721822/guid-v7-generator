@@ -1,5 +1,6 @@
 "use client";
 
+import { useT } from "@/app/i18n/client";
 import { Button, Card, CardBody } from "@heroui/react";
 import { Check, Copy } from "lucide-react";
 import { useState } from "react";
@@ -10,6 +11,7 @@ interface GuidResultsProps {
 }
 
 export function GuidResults({ guids, onCopyAll }: GuidResultsProps) {
+  const { t } = useT();
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
   const [copiedAll, setCopiedAll] = useState(false);
 
@@ -38,26 +40,29 @@ export function GuidResults({ guids, onCopyAll }: GuidResultsProps) {
       <CardBody className="p-0">
         <div className="flex flex-col justify-between gap-4 pb-4 sm:flex-row sm:items-center border-b border-card">
           <h3 className="text-xl font-semibold">
-            Generated {guids.length} GUID{guids.length > 1 ? "s" : ""}
+            {t("guidResults.title", { count: guids.length })}
           </h3>
           <Button
             size="sm"
             variant="flat"
             color="primary"
             onPress={handleCopyAll}
-            startContent={copiedAll ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
+            startContent={
+              copiedAll ? (
+                <Check className="w-4 h-4" />
+              ) : (
+                <Copy className="w-4 h-4" />
+              )
+            }
             className="h-10 px-4 text-sm font-semibold whitespace-nowrap sm:w-auto"
           >
-            {copiedAll ? "Copied!": "Copy All"}
+            {copiedAll ? t("guidResults.copied") : t("guidResults.copyAll")}
           </Button>
         </div>
 
         <div className="mt-4 space-y-2">
           {guids.map((guid, index) => (
-            <div
-              key={`${guid}-${index}`}
-              className="flex items-center gap-2"
-            >
+            <div key={`${guid}-${index}`} className="flex items-center gap-2">
               <code className="text-sm overflow-hidden text-ellipsis whitespace-nowrap flex-1 min-w-0 bg-default-100 hover:bg-default-200 border-2 border-default-200 rounded-medium px-3 py-2 transition-colors">
                 {guid}
               </code>
@@ -66,7 +71,7 @@ export function GuidResults({ guids, onCopyAll }: GuidResultsProps) {
                 size="sm"
                 variant="light"
                 onPress={() => handleCopyGuid(guid, index)}
-                aria-label="Copy GUID"
+                aria-label={t("guidResults.copyGuid")}
                 className="flex-shrink-0"
               >
                 {copiedIndex === index ? (

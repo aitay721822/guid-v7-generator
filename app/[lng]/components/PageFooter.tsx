@@ -1,6 +1,11 @@
+"use client";
+
+import { useT } from "@/app/i18n/client";
 import { Link } from "@heroui/react";
 
 export function PageFooter() {
+  const { t } = useT();
+
   return (
     <footer className="mt-16 text-center">
       <Link
@@ -10,7 +15,7 @@ export function PageFooter() {
         color="primary"
         className="text-sm transition-colors hover:underline"
       >
-        Read the RFC specification
+        {t("pageFooter.rfcLink")}
       </Link>
     </footer>
   );

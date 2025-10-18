@@ -1,9 +1,13 @@
 import { ServiceWorkerRegister } from "@/components/service-worker-register";
 import { Providers } from "@/components/ui-provider";
 import { cn } from "@heroui/react";
-import type { Metadata, Viewport } from "next";
+import type { Viewport } from "next";
 import { Geist, Geist_Mono, Varela_Round } from "next/font/google";
-import "./globals.css";
+
+import { dir } from "i18next";
+import "../globals.css";
+import { languages } from "../i18n";
+import { getT } from "../i18n/server";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,31 +32,41 @@ export const viewport: Viewport = {
   maximumScale: 1,
 };
 
-export const metadata: Metadata = {
-  title: "GUID v7 生成器",
-  description: "一個簡單的 GUID v7 生成器應用，支援離線使用",
-  manifest: "/manifest.json",
-  appleWebApp: {
-    capable: true,
-    statusBarStyle: "default",
-    title: "GUID v7",
-  },
-};
-
 export const fonts = cn(
   geistSans.variable,
   geistMono.variable,
   varelaRound.variable,
-  'touch-manipulation font-sans antialiased'
+  "touch-manipulation font-sans antialiased",
 );
 
-export default function RootLayout({
+export async function generateStaticParams() {
+  return languages.map((lng) => ({ lng }))
+}
+
+export async function generateMetadata() {
+  const { t } = await getT()
+  return {
+    title: t('pageHeader.title'),
+    description: "一個簡單的 GUID v7 生成器應用，支援離線使用",
+    manifest: "/manifest.json",
+    appleWebApp: {
+      capable: true,
+      statusBarStyle: "default",
+      title: "GUID v7",
+    },
+  }
+}
+
+export default async function RootLayout({
   children,
+  params,
 }: Readonly<{
   children: React.ReactNode;
+  params: Promise<{ lng: string }>;
 }>) {
+  const { lng } = await params;
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={lng} dir={dir(lng)} suppressHydrationWarning>
       <body className={fonts}>
         <ServiceWorkerRegister />
         <Providers>{children}</Providers>

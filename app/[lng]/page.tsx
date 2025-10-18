@@ -1,14 +1,5 @@
 "use client";
 
-import { useState } from "react";
-import {
-  Modal,
-  ModalContent,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-  Button,
-} from "@heroui/react";
 import {
   type FormatOptions,
   formatMultipleGuids,
@@ -16,13 +7,24 @@ import {
   generateSimilarGuids,
   isValidGuid,
 } from "@/lib/guid";
-import { PageHeader } from "./components/PageHeader";
-import { GeneratorCard } from "./components/GeneratorCard";
+import {
+  Button,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+} from "@heroui/react";
+import { useState } from "react";
+import { useT } from "../i18n/client";
 import { AdvancedOptions } from "./components/AdvancedOptions";
+import { GeneratorCard } from "./components/GeneratorCard";
 import { GuidResults } from "./components/GuidResults";
 import { PageFooter } from "./components/PageFooter";
+import { PageHeader } from "./components/PageHeader";
 
 export default function Home() {
+  const { t } = useT();
   const [quantity, setQuantity] = useState<string>("1");
   const [generatedGuids, setGeneratedGuids] = useState<string[]>([]);
   const [formatOptions, setFormatOptions] = useState<FormatOptions>({
@@ -34,6 +36,7 @@ export default function Home() {
   });
   const [autoCopy, setAutoCopy] = useState(true);
   const [referenceGuid, setReferenceGuid] = useState("");
+  const [timeOffset, setTimeOffset] = useState("");
   const [showCopiedMessage, setShowCopiedMessage] = useState(false);
   const [errorDialog, setErrorDialog] = useState<{
     isOpen: boolean;
@@ -45,9 +48,30 @@ export default function Home() {
     if (Number.isNaN(count) || count < 1 || count > 1000) {
       setErrorDialog({
         isOpen: true,
-        message: "Please enter a valid quantity between 1 and 1000",
+        message: t("errors.invalidQuantity"),
       });
       return;
+    }
+
+    // Parse time offset and validate it's only used with reference GUID
+    let offsetMs: number | undefined;
+    if (timeOffset.trim()) {
+      if (!referenceGuid.trim()) {
+        setErrorDialog({
+          isOpen: true,
+          message: t("errors.timeOffsetNeedsReference"),
+        });
+        return;
+      }
+      const parsedOffset = Number.parseInt(timeOffset, 10);
+      if (Number.isNaN(parsedOffset)) {
+        setErrorDialog({
+          isOpen: true,
+          message: t("errors.invalidTimeOffset"),
+        });
+        return;
+      }
+      offsetMs = parsedOffset;
     }
 
     let guids: string[];
@@ -55,11 +79,11 @@ export default function Home() {
       if (!isValidGuid(referenceGuid)) {
         setErrorDialog({
           isOpen: true,
-          message: "Invalid reference GUID format",
+          message: t("errors.invalidReferenceGuid"),
         });
         return;
       }
-      guids = generateSimilarGuids(referenceGuid, count);
+      guids = generateSimilarGuids(referenceGuid, count, offsetMs);
     } else {
       guids = generateMultipleGuids(count);
     }
@@ -76,7 +100,7 @@ export default function Home() {
         console.error("Failed to auto-copy:", error);
         setErrorDialog({
           isOpen: true,
-          message: "Failed to copy to clipboard. Please try again.",
+          message: t("errors.copyFailed"),
         });
       }
     }
@@ -110,6 +134,8 @@ export default function Home() {
           <AdvancedOptions
             referenceGuid={referenceGuid}
             onReferenceGuidChange={setReferenceGuid}
+            timeOffset={timeOffset}
+            onTimeOffsetChange={setTimeOffset}
           />
 
           <GuidResults guids={generatedGuids} onCopyAll={handleCopyAll} />
@@ -120,20 +146,20 @@ export default function Home() {
 
       <Modal
         isOpen={errorDialog.isOpen}
-        onOpenChange={(isOpen) =>
-          setErrorDialog({ ...errorDialog, isOpen })
-        }
+        onOpenChange={(isOpen) => setErrorDialog({ ...errorDialog, isOpen })}
       >
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-1">Error</ModalHeader>
+              <ModalHeader className="flex flex-col gap-1">
+                {t("errors.title")}
+              </ModalHeader>
               <ModalBody>
                 <p>{errorDialog.message}</p>
               </ModalBody>
               <ModalFooter>
                 <Button color="primary" onPress={onClose}>
-                  OK
+                  {t("errors.ok")}
                 </Button>
               </ModalFooter>
             </>

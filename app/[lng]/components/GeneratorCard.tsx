@@ -1,5 +1,6 @@
 "use client";
 
+import { useT } from "@/app/i18n/client";
 import type { FormatOptions as FormatOptionsType } from "@/lib/guid";
 import { Button, Card, CardBody, Checkbox, Input } from "@heroui/react";
 import { Check } from "lucide-react";
@@ -26,14 +27,16 @@ export function GeneratorCard({
   showCopiedMessage,
   onGenerate,
 }: GeneratorCardProps) {
+  const { t } = useT();
+
   return (
     <Card className="rounded-xl shadow-xs p-6 card-border">
       <CardBody className="flex flex-col gap-6 p-0 overflow-visible">
-        <h2 className="text-xl font-semibold">Generate GUIDs</h2>
+        <h2 className="text-xl font-semibold">{t("generatorCard.title")}</h2>
 
         <div className="flex flex-col gap-4">
           <Input
-            label="Quantity"
+            label={t("generatorCard.quantity")}
             type="number"
             value={quantity}
             onValueChange={onQuantityChange}
@@ -42,7 +45,7 @@ export function GeneratorCard({
             placeholder="1"
             className="flex-1"
             classNames={{
-              inputWrapper: "h-14"
+              inputWrapper: "h-14",
             }}
           />
           <Button
@@ -53,10 +56,10 @@ export function GeneratorCard({
             {showCopiedMessage ? (
               <>
                 <Check className="w-4 h-4" />
-                <span>Copied to clipboard</span>
+                <span>{t("generatorCard.copiedToClipboard")}</span>
               </>
             ) : (
-              <span>Generate</span>
+              <span>{t("generatorCard.generate")}</span>
             )}
           </Button>
         </div>
@@ -67,15 +70,15 @@ export function GeneratorCard({
         />
 
         <div className="mt-4 pt-4 border-t border-card">
-          <p className="mb-3 font-medium">Clipboard</p>
+          <p className="mb-3 font-medium">{t("generatorCard.clipboard")}</p>
           <Checkbox
             isSelected={autoCopy}
             onValueChange={onAutoCopyChange}
             classNames={{
-              label: "text-sm font-medium"
+              label: "text-sm font-medium",
             }}
           >
-            Auto copy to clipboard
+            {t("generatorCard.autoCopy")}
           </Checkbox>
         </div>
       </CardBody>

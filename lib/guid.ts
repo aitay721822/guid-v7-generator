@@ -17,6 +17,7 @@ export function generateGuidV7(): string {
 
 /**
  * Generate multiple GUID v7s
+ * @param count Number of GUIDs to generate
  */
 export function generateMultipleGuids(count: number): string[] {
   return Array.from({ length: count }, () => generateGuidV7());
@@ -25,10 +26,14 @@ export function generateMultipleGuids(count: number): string[] {
 /**
  * Generate similar GUIDs based on a reference GUID
  * This maintains the timestamp portion and generates new random portions
+ * @param referenceGuid The reference GUID to base the timestamp on
+ * @param count Number of GUIDs to generate
+ * @param timeOffset Optional time offset in milliseconds to apply to the reference timestamp
  */
 export function generateSimilarGuids(
   referenceGuid: string,
   count: number,
+  timeOffset?: number,
 ): string[] {
   // Parse the reference GUID to extract timestamp portion
   // UUID v7 format: xxxxxxxx-xxxx-7xxx-xxxx-xxxxxxxxxxxx
@@ -38,14 +43,23 @@ export function generateSimilarGuids(
     throw new Error("Invalid GUID format");
   }
 
-  // Extract timestamp portion (first 12 hex chars)
-  const timestampPortion = cleaned.substring(0, 12);
+  // Extract timestamp portion (first 12 hex chars) and convert to timestamp
+  const timestampHex = cleaned.substring(0, 12);
+  let timestamp = Number.parseInt(timestampHex, 16);
+
+  // Apply time offset if provided
+  if (timeOffset !== undefined && timeOffset !== 0) {
+    timestamp += timeOffset;
+  }
+
+  // Convert back to hex (12 chars, padded with zeros)
+  const offsetTimestampHex = timestamp.toString(16).padStart(12, "0");
 
   const guids: string[] = [];
   for (let i = 0; i < count; i++) {
-    // Generate a new GUID v7 and replace its timestamp with the reference timestamp
+    // Generate a new GUID v7 and replace its timestamp with the offset timestamp
     const newGuid = generateGuidV7().replace(/-/g, "");
-    const similarGuid = timestampPortion + newGuid.substring(12);
+    const similarGuid = offsetTimestampHex + newGuid.substring(12);
 
     // Reformat with hyphens
     const formatted = `${similarGuid.substring(0, 8)}-${similarGuid.substring(8, 12)}-${similarGuid.substring(12, 16)}-${similarGuid.substring(16, 20)}-${similarGuid.substring(20)}`;
