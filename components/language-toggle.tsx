@@ -8,6 +8,7 @@ import {
   DropdownTrigger,
 } from "@heroui/react";
 import { Languages } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useT } from "@/app/i18n/client";
 
@@ -19,6 +20,7 @@ const languages = [
 export function LanguageToggle() {
   const [mounted, setMounted] = useState(false);
   const { i18n } = useT();
+  const router = useRouter();
 
   useEffect(() => {
     setMounted(true);
@@ -50,7 +52,9 @@ export function LanguageToggle() {
         selectionMode="single"
         onSelectionChange={(keys) => {
           const selected = Array.from(keys)[0] as string;
-          i18n.changeLanguage(selected);
+          if (selected) {
+            router.push(`/${selected}`);
+          }
         }}
       >
         {languages.map((lang) => (
