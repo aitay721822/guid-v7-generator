@@ -1,7 +1,7 @@
 "use client";
 
-import { useT } from "@/app/i18n/client";
 import { Accordion, AccordionItem, Card, Input } from "@heroui/react";
+import { useT } from "@/app/i18n/client";
 
 interface AdvancedOptionsProps {
   referenceGuid: string;

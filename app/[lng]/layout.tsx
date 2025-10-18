@@ -1,10 +1,9 @@
-import { ServiceWorkerRegister } from "@/components/service-worker-register";
-import { Providers } from "@/components/ui-provider";
 import { cn } from "@heroui/react";
+import { dir } from "i18next";
 import type { Viewport } from "next";
 import { Geist, Geist_Mono, Varela_Round } from "next/font/google";
-
-import { dir } from "i18next";
+import { ServiceWorkerRegister } from "@/components/service-worker-register";
+import { Providers } from "@/components/ui-provider";
 import "../globals.css";
 import { languages } from "../i18n";
 import { getT } from "../i18n/server";
@@ -40,13 +39,13 @@ export const fonts = cn(
 );
 
 export async function generateStaticParams() {
-  return languages.map((lng) => ({ lng }))
+  return languages.map((lng) => ({ lng }));
 }
 
 export async function generateMetadata() {
-  const { t } = await getT()
+  const { t } = await getT();
   return {
-    title: t('pageHeader.title'),
+    title: t("pageHeader.title"),
     description: "一個簡單的 GUID v7 生成器應用，支援離線使用",
     manifest: "/manifest.json",
     appleWebApp: {
@@ -54,7 +53,7 @@ export async function generateMetadata() {
       statusBarStyle: "default",
       title: "GUID v7",
     },
-  }
+  };
 }
 
 export default async function RootLayout({

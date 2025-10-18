@@ -1,7 +1,7 @@
 "use client";
 
-import { useT } from "@/app/i18n/client";
 import { Link } from "@heroui/react";
+import { useT } from "@/app/i18n/client";
 
 export function PageFooter() {
   const { t } = useT();

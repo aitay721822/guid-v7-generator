@@ -1,9 +1,9 @@
 "use client";
 
-import { useT } from "@/app/i18n/client";
 import { Button, Card, CardBody } from "@heroui/react";
 import { Check, Copy } from "lucide-react";
 import { useState } from "react";
+import { useT } from "@/app/i18n/client";
 
 interface GuidResultsProps {
   guids: string[];
@@ -62,7 +62,7 @@ export function GuidResults({ guids, onCopyAll }: GuidResultsProps) {
 
         <div className="mt-4 space-y-2">
           {guids.map((guid, index) => (
-            <div key={`${guid}-${index}`} className="flex items-center gap-2">
+            <div key={guid} className="flex items-center gap-2">
               <code className="text-sm overflow-hidden text-ellipsis whitespace-nowrap flex-1 min-w-0 bg-default-100 hover:bg-default-200 border-2 border-default-200 rounded-medium px-3 py-2 transition-colors">
                 {guid}
               </code>

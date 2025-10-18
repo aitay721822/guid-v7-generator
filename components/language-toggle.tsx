@@ -1,6 +1,5 @@
 "use client";
 
-import { useT } from "@/app/i18n/client";
 import {
   Button,
   Dropdown,
@@ -10,6 +9,7 @@ import {
 } from "@heroui/react";
 import { Languages } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useT } from "@/app/i18n/client";
 
 const languages = [
   { key: "en", label: "English", flag: "🇺🇸" },
@@ -26,7 +26,12 @@ export function LanguageToggle() {
 
   if (!mounted) {
     return (
-      <Button isIconOnly variant="light" aria-label="Toggle language" isDisabled>
+      <Button
+        isIconOnly
+        variant="light"
+        aria-label="Toggle language"
+        isDisabled
+      >
         <Languages className="w-5 h-5" />
       </Button>
     );

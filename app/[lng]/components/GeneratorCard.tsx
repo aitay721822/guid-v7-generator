@@ -1,9 +1,9 @@
 "use client";
 
-import { useT } from "@/app/i18n/client";
-import type { FormatOptions as FormatOptionsType } from "@/lib/guid";
 import { Button, Card, CardBody, Checkbox, Input } from "@heroui/react";
 import { Check } from "lucide-react";
+import { useT } from "@/app/i18n/client";
+import type { FormatOptions as FormatOptionsType } from "@/lib/guid";
 import { FormatOptions } from "./FormatOptions";
 
 interface GeneratorCardProps {

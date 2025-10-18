@@ -1,8 +1,8 @@
 "use client";
 
+import { Checkbox } from "@heroui/react";
 import { useT } from "@/app/i18n/client";
 import type { FormatOptions as FormatOptionsType } from "@/lib/guid";
-import { Checkbox } from "@heroui/react";
 
 interface FormatOptionsProps {
   options: FormatOptionsType;
