@@ -1,36 +1,124 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# GUID v7 Generator
 
-## Getting Started
+一個現代化、功能豐富的 GUID v7 生成工具，支援時間排序的 122 位元通用唯一識別碼生成。
 
-First, run the development server:
+## ✨ 主要功能
+
+### 🚀 基本功能
+- **批量生成**：一次生成 1-1000 個 GUID v7
+- **即時複製**：自動複製到剪貼簿，支援手動複製
+- **格式自訂**：支援多種格式選項
+  - 連字號格式
+  - 大括號包圍
+  - 大寫轉換
+  - 引號包圍
+  - 逗號分隔
+
+### ⚡ 進階功能
+- **參考 GUID 生成**：基於現有 GUID 的時間戳生成新 GUID
+- **時間偏移**：調整參考 GUID 的時間戳（毫秒級）
+- **智慧驗證**：即時驗證輸入參數的有效性
+
+### 🌍 國際化支援
+- **繁體中文** (zh-Hant)
+- **英文** (en)
+
+### 🎨 使用者體驗
+- **深色/淺色主題**：支援系統主題自動切換
+- **響應式設計**：完美適配桌面和行動裝置
+- **離線支援**：支援 PWA，可離線使用
+
+## 🛠️ 技術規格
+
+- **Framework**: Next.js 15.5.6
+- **Runtime**: React 19.1.0
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS 4.0
+- **UI Components**: HeroUI
+
+**主要依賴**：
+- `uuidv7` - GUID v7 生成引擎
+- `i18next` - 國際化框架
+- `next-themes` - 主題管理
+
+## 🚀 快速開始
+
+### 環境需求
+- Node.js 18+
+- npm/yarn/pnpm/bun
+
+### 安裝與執行
 
 ```bash
+# 安裝依賴
+npm install
+
+# 啟動開發服務器
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# 開啟瀏覽器訪問
+# http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 其他指令
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+# 建置生產版本
+npm run build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+# 啟動生產服務器
+npm run start
 
-## Learn More
+# 程式碼檢查
+npm run lint
 
-To learn more about Next.js, take a look at the following resources:
+# 自動修復程式碼問題
+npm run lint:fix
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# 格式化程式碼
+npm run format
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📖 使用指南
 
-## Deploy on Vercel
+### 基本生成
+1. 在「數量」欄位輸入要生成的 GUID 數量 (1-1000)
+2. 選擇所需的格式選項
+3. 點擊「生成」按鈕
+4. GUID 會自動複製到剪貼簿
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 進階生成
+1. 在「參考 GUID」欄位輸入現有的 GUID v7
+2. 選擇性設定「時間偏移」（毫秒）
+3. 系統會基於參考 GUID 的時間戳生成新 GUID
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 格式選項說明
+- **連字號**: 控制是否顯示標準的連字號格式 (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)
+- **大括號**: 將 GUID 包圍在大括號內 {guid}
+- **大寫**: 將所有字母轉換為大寫
+- **引號**: 將 GUID 包圍在雙引號內 "guid"
+- **逗號**: 在每個 GUID 後面加上逗號
+
+## 🌟 特色功能
+
+### 時間排序 GUID v7
+GUID v7 是一種新興的 UUID 標準，具有以下優點：
+- **時間排序**: GUID 依生成時間自動排序
+- **資料庫索引友好**: 改善查詢效能
+- **分散式系統相容**: 適合微服務架構
+
+### 智慧複製系統
+- 自動複製最新生成的 GUID
+- 支援批量複製所有結果
+- 視覺回饋顯示複製狀態
+
+## 📱 PWA 支援
+
+這個應用程式支援漸進式網頁應用程式 (PWA) 功能：
+- 可安裝到桌面/行動裝置
+- 離線使用能力
+- 背景同步支援
+
+## 📄 授權條款
+
+本專案採用 MIT 授權條款 - 詳見 [LICENSE](LICENSE) 文件
