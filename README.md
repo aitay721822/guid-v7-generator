@@ -63,7 +63,7 @@ npm run dev
 ### 其他指令
 
 ```bash
-# 建置生產版本
+# 建置生產版本 (會自動生成 sitemap)
 npm run build
 
 # 啟動生產服務器
@@ -77,6 +77,20 @@ npm run lint:fix
 
 # 格式化程式碼
 npm run format
+```
+
+### SEO 與 Sitemap
+
+專案已整合 `next-sitemap` 自動生成 sitemap 和 robots.txt：
+
+- **自動生成**: 建置時自動產生 `/sitemap.xml` 和 `/robots.txt`
+- **多語言支援**: 包含所有語言版本的 URL
+- **自訂設定**: 可透過環境變數 `SITE_URL` 設定網站 URL
+
+```bash
+# 設定生產環境 URL (可選)
+export SITE_URL=https://your-domain.com
+npm run build
 ```
 
 ## 📖 使用指南
