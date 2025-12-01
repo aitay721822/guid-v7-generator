@@ -1,9 +1,9 @@
+import { ServiceWorkerRegister } from "@/components/service-worker-register";
+import { Providers } from "@/components/ui-provider";
 import { cn } from "@heroui/react";
 import { dir } from "i18next";
 import type { Viewport } from "next";
 import { Geist, Geist_Mono, Varela_Round } from "next/font/google";
-import { ServiceWorkerRegister } from "@/components/service-worker-register";
-import { Providers } from "@/components/ui-provider";
 import "../globals.css";
 import { languages } from "../i18n";
 import { getT } from "../i18n/server";
@@ -52,6 +52,22 @@ export async function generateMetadata() {
       capable: true,
       statusBarStyle: "default",
       title: "GUID 產生工具",
+    },
+    robots: {
+      index: true,
+      follow: true,
+      nocache: false,
+      googleBot: {
+        index: true,
+        follow: true,
+        noimageindex: false,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
+    },
+    verification: {
+      google: "GJNn92ljIRdazTFW6YFeSHfgsd3oBsvh3rik-bHAJEM",
     },
   };
 }
