@@ -16,7 +16,7 @@ export const config = {
   ],
 };
 
-export function middleware(req: NextRequest) {
+export function proxy(req: NextRequest) {
   // Ignore paths with "chrome"
   if (req.nextUrl.pathname.indexOf("chrome") > -1) return NextResponse.next();
 
