@@ -4,6 +4,9 @@ FROM node:25-alpine AS base
 # Set working directory
 WORKDIR /app
 
+# Set standalone mode for Docker build
+ENV STANDALONE=true
+
 # Copy package files and env
 COPY package.json pnpm-lock.yaml .env ./
 

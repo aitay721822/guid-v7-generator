@@ -1,8 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Enable standalone output for Docker deployment
-  output: "standalone",
+  // Enable standalone output only for Docker deployment (not Vercel)
+  output: process.env.STANDALONE === "true" ? "standalone" : undefined,
 
   // Enable experimental features for better PWA support
   experimental: {
