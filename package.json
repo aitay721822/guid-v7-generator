@@ -12,9 +12,9 @@
     "postbuild": "next-sitemap"
   },
   "dependencies": {
-    "@heroui/react": "^2.8.10",
+    "@heroui/react": "^2.8.7",
     "accept-language": "^3.0.20",
-    "framer-motion": "^12.38.0",
+    "framer-motion": "^12.29.0",
     "i18next": "^25.10.10",
     "i18next-browser-languagedetector": "^8.2.1",
     "i18next-http-backend": "^3.0.6",
