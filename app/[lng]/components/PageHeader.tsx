@@ -20,6 +20,9 @@ export function PageHeader() {
       <p className="text-lg max-w-2xl text-muted">
         {t("pageHeader.description")}
       </p>
+      <p className="text-sm text-muted-foreground mt-2">
+        v{process.env.NEXT_PUBLIC_APP_VERSION}
+      </p>
     </header>
   );
 }
